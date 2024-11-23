@@ -1,0 +1,33 @@
+def redeem_prizes(points):
+    prize = 0
+    cookie = 5  
+
+    while cookie <= points:
+        prize += 1
+        cookie *= 2  
+
+    return prize
+
+dictionary = {}
+print("COOKIE DOUGH SALES POINTS AND PRIZES TRACKER")
+
+name = input("Name: ").title()
+while name: 
+    while True:
+        try:
+            cookie = int(input("Cookie dough sold: "))
+            if name in dictionary:
+                dictionary[name] += cookie  
+            else:
+                dictionary[name] = cookie  
+            break  
+        except ValueError:
+            print("Please enter a valid integer for the cookie dough sold.")
+
+    name = input("Name: ").title()  
+
+print("Selling over! Let's see how everyone did!")
+for key in dictionary:  
+    num_cookies = dictionary[key]  
+    prizes = redeem_prizes(num_cookies)  
+    print(f"{key} has {num_cookies} points and can redeem {prizes} prize(s).")
